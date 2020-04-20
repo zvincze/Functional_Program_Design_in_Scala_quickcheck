@@ -1,13 +1,9 @@
-package quickcheck
+package quickcheck.test
 
-import org.scalacheck.Prop
-import org.scalacheck.Properties
 import org.junit._
-
-import org.scalacheck.Arbitrary._
-import org.scalacheck.Prop
-import org.scalacheck.Prop._
-import org.scalacheck.Test.{check, Result, Failed, PropException}
+import org.scalacheck.Test.{Failed, PropException, Result, check}
+import org.scalacheck.{Prop, Properties}
+import quickcheck.{BinomialHeap, QuickCheckHeap}
 
 object QuickCheckBinomialHeap extends QuickCheckHeap with BinomialHeap
 
@@ -33,23 +29,23 @@ class QuickCheckSuite {
 
   @Test def `Binomial heap satisfies properties. (5pts)`: Unit =
     Assert.assertTrue(
-      check(asProp(new QuickCheckHeap with quickcheck.test.BinomialHeap))(identity).passed
+      check(asProp(new QuickCheckHeap with quickcheck.BinomialHeap))(identity).passed
     )
 
   @Test def `Bogus (1) binomial heap does not satisfy properties. (10pts)`: Unit =
-    checkBogus(new QuickCheckHeap with quickcheck.test.Bogus1BinomialHeap)
+    checkBogus(new QuickCheckHeap with quickcheck.Bogus1BinomialHeap)
 
   @Test def `Bogus (2) binomial heap does not satisfy properties. (10pts)`: Unit =
-    checkBogus(new QuickCheckHeap with quickcheck.test.Bogus2BinomialHeap)
+    checkBogus(new QuickCheckHeap with quickcheck.Bogus2BinomialHeap)
 
   @Test def `Bogus (3) binomial heap does not satisfy properties. (10pts)`: Unit =
-    checkBogus(new QuickCheckHeap with quickcheck.test.Bogus3BinomialHeap)
+    checkBogus(new QuickCheckHeap with quickcheck.Bogus3BinomialHeap)
 
   @Test def `Bogus (4) binomial heap does not satisfy properties. (10pts)`: Unit =
-    checkBogus(new QuickCheckHeap with quickcheck.test.Bogus4BinomialHeap)
+    checkBogus(new QuickCheckHeap with quickcheck.Bogus4BinomialHeap)
 
   @Test def `Bogus (5) binomial heap does not satisfy properties. (10pts)`: Unit =
-    checkBogus(new QuickCheckHeap with quickcheck.test.Bogus5BinomialHeap)
+    checkBogus(new QuickCheckHeap with quickcheck.Bogus5BinomialHeap)
 
   @Rule def individualTestTimeout = new org.junit.rules.Timeout(10 * 1000)
 }
