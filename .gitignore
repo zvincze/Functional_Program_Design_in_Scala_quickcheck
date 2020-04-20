@@ -1,0 +1,14 @@
+# sbt
+bin/
+project/project/
+project/target/
+target/
+build/
+null/
+
+# intellij idea
+*.log
+*.iml
+*.ipr
+*.iws
+.idea
